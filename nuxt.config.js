@@ -10,10 +10,17 @@ export default {
 		host: '0.0.0.0', // default: localhost,
 		timing: false,
 
-		https: {
-			key: fs.readFileSync(path.resolve(__dirname, 'certs/', 'server.key')),
-			cert: fs.readFileSync(path.resolve(__dirname, 'certs/', 'server.crt')),
-		},
+		// https:
+		// function() {
+		// 	if (this.dev) return {};
+		// 	else
+		// 		return
+		// {
+		// 	key: fs.readFileSync(path.resolve(__dirname, 'certs/', 'server.key')),
+		// 	cert: fs.readFileSync(path.resolve(__dirname, 'certs/', 'server.crt')),
+		// },
+		// ;
+		// },
 	},
 
 	// Global page headers: https://go.nuxtjs.dev/config-head
