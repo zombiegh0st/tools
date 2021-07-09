@@ -9,18 +9,6 @@ export default {
 		port: 8000, // default: 3000
 		host: '0.0.0.0', // default: localhost,
 		timing: false,
-
-		// https:
-		// function() {
-		// 	if (this.dev) return {};
-		// 	else
-		// 		return
-		// {
-		// 	key: fs.readFileSync(path.resolve(__dirname, 'certs/', 'server.key')),
-		// 	cert: fs.readFileSync(path.resolve(__dirname, 'certs/', 'server.crt')),
-		// },
-		// ;
-		// },
 	},
 
 	// Global page headers: https://go.nuxtjs.dev/config-head
@@ -28,7 +16,7 @@ export default {
 		title: 'nuxtjs',
 		meta: [
 			{ charset: 'utf-8' },
-			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
+			{ name: 'viewport', content: 'width=device-width, initial-scale=1, minimal-ui' },
 			{
 				hid: 'description',
 				name: 'description',
@@ -38,6 +26,7 @@ export default {
 		link: [
 			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
 			{
+				// bootstrap
 				rel: 'stylesheet',
 				integrity:
 					'sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC',
