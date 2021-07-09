@@ -16,7 +16,23 @@ export default {
 		title: 'nuxtjs',
 		meta: [
 			{ charset: 'utf-8' },
-			{ name: 'viewport', content: 'width=device-width, initial-scale=1, minimal-ui' },
+			{
+				name: 'viewport',
+				content:
+					'width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 1, user-scalable = no',
+			},
+			{
+				name: 'apple-mobile-web-app-title',
+				content: 'ZOMB',
+			},
+			{
+				name: 'apple-mobile-web-app-capable',
+				content: 'yes',
+			},
+			{
+				name: 'apple-mobile-web-app-status-bar-style',
+				content: 'black',
+			},
 			{
 				hid: 'description',
 				name: 'description',
@@ -24,7 +40,13 @@ export default {
 			},
 		],
 		link: [
-			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' },
+			{ rel: 'apple-touch-icon', href: '/zomboid_192.png' },
+			{ rel: 'apple-touch-icon', sizes: '76x76', href: '/zomboid_76.png' },
+			{ rel: 'apple-touch-icon', sizes: '120x120', href: '/zomboid_120.png' },
+			{ rel: 'apple-touch-icon', sizes: '152x152', href: '/zomboid_152.png' },
+			{ rel: 'shortcut icon', sizes: '192x192', href: '/zomboid_192.png' },
+			{ rel: 'shortcut icon', type: 'image/png', href: '/zomboid_192.png' },
 			{
 				// bootstrap
 				rel: 'stylesheet',
