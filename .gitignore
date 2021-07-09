@@ -94,3 +94,6 @@ sw.*
 .vercel
 
 certs
+sw.*
+nuxt.config.js
+yarn.lock

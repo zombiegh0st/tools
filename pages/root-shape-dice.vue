@@ -5,7 +5,7 @@
 				<span class="result">{{ shapes[idxShape] }} - {{ roots[idxRoot] }}</span>
 			</div>
 			<div>
-				<Button class="roll-button" content="Würfeln" :onClick="roll" />
+				<Button class="roll-button" content="Roll" :onClick="roll" />
 			</div>
 		</div>
 	</div>
@@ -44,9 +44,9 @@
 
 <style lang="sass">
 	.roll-button
-		width: 12em
-		height: 3em
-		font-size: 2em
+		width: 30vh
+		height: 9vh
+		font-size: 4vh
 
 	.result
 		color: #333
