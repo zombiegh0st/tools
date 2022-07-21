@@ -1,3 +1,7 @@
+# URLS deployed app
+[Chord-Dice](https://tools-zombiegh0st.vercel.app/chord-dice)
+[Root-Shape-Dice](https://tools-zombiegh0st.vercel.app/root-shape-dice)
+
 # Nuxt.js Example
 
 This directory is a brief example of a [Nuxt.js](https://nuxtjs.org) app that can be deployed with Vercel and zero configuration.
