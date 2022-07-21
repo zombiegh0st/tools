@@ -60,7 +60,7 @@
 	};
 </script>
 
-<style lang="sass">
+<style scoped lang="sass">
 	.roll-button
 		width: 30vh
 		height: 9vh
