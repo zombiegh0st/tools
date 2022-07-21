@@ -1,6 +1,6 @@
 # URLS deployed app
-[Chord-Dice](https://tools-zombiegh0st.vercel.app/chord-dice)
-[Root-Shape-Dice](https://tools-zombiegh0st.vercel.app/root-shape-dice)
+- [Chord-Dice](https://tools-zombiegh0st.vercel.app/chord-dice)
+- [Root-Shape-Dice](https://tools-zombiegh0st.vercel.app/root-shape-dice)
 
 # Nuxt.js Example
 
