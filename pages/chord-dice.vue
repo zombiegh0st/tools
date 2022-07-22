@@ -2,7 +2,7 @@
 	<div class="main container d-flex align-items-center min-vh-100">
 		<div class="col text-center align-middle">
 			<div class="row align-items-center">
-				<span class="result">{{ mod[idxShape] }}{{ roots[idxRoot] }}</span>
+				<span class="result">{{ roots[idxRoot] }}{{ mod[idxShape] }}</span>
 			</div>
 			<div>
 				<Button class="roll-button" content="Roll" :onClick="roll" />
@@ -14,7 +14,7 @@
 <script>
 	import Button from '~/components/Button.vue';
 	export default {
-		data: function() {
+		data: function () {
 			return {
 				idxRoot: 0,
 				idxShape: 0,
@@ -46,10 +46,10 @@
 		},
 
 		methods: {
-			getRandomInt: function(max) {
+			getRandomInt: function (max) {
 				return Math.floor(Math.random() * max);
 			},
-			roll: function(e) {
+			roll: function (e) {
 				var newRoot = this.getRandomInt(this.roots.length);
 				this.idxRoot = newRoot;
 

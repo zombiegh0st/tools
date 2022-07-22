@@ -1,74 +1,42 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        nuxtjs
-      </h1>
-      <h2 class="subtitle">
-        My astonishing Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+	<div class="main container d-flex align-items-center min-vh-100">
+		<div class="col text-center align-middle">
+			<div>
+				<button class="btn btn-primary row button" @click="goto('/root-shape-dice')">
+					RS-Dice
+				</button>
+			</div>
+			<div>
+				<button class="btn btn-primary row button" @click="goto('/chord-dice')">
+					Chord-Dice
+				</button>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+	import Button from '~/components/Button.vue';
+	export default {
+		components: {
+			Button,
+		},
 
-export default {
-  components: {
-    Logo
-  }
-}
+		methods: {
+			goto: function (url) {
+				this.$router.push(url);
+			},
+		},
+	};
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style scoped lang="sass">
+	.button
+		width: 30vh
+		height: 9vh
+		font-size: 4vh
+		margin: 1em 0em
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
+	.main
+		transform: translate(0%,-10%)!important
 </style>
