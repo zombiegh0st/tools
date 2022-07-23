@@ -1,5 +1,5 @@
-<template>
-	<div class="main container d-flex min-vh-100">
+<template @wheel.prevent @touchmove.prevent @scroll.prevent>
+	<div class="main container d-flex">
 		<div class="col text-center">
 			<div id="resultChord" class="row">
 				<span>{{ resultChord }}</span>
