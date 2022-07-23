@@ -13,7 +13,7 @@ export default {
 
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
-		title: 'nuxtjs',
+		title: 'ZOMB',
 		meta: [
 			{ charset: 'utf-8' },
 			{
@@ -55,6 +55,11 @@ export default {
 				href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css',
 				crossorigin: 'anonymous',
 			},
+			{
+				// bootstrap icons
+				rel: 'stylesheet',
+				href: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css',
+			},
 		],
 	},
 
@@ -62,19 +67,19 @@ export default {
 	css: [],
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-	plugins: [],
+	plugins: ['~/plugins/vue-youtube.js', '~/plugins/vue-async-computed.js'],
 
 	// Auto import components: https://go.nuxtjs.dev/config-components
 	components: true,
 
 	// Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-	buildModules: [
-		'@nuxtjs/pwa',
-	],
+	buildModules: ['@nuxtjs/pwa'],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
 	modules: [],
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
-	build: {},
+	build: {
+		transpile: ['vue-youtube', 'vue-async-computed'],
+	},
 };
