@@ -1,19 +1,21 @@
-<template @wheel.prevent @touchmove.prevent @scroll.prevent>
-	<div class="main container d-flex">
-		<div class="col text-center">
-			<div id="resultChord" class="row">
-				<span>{{ resultChord }}</span>
-			</div>
-			<div id="resultTones" :style="{ visibility: showTones ? 'visible' : 'hidden' }">
-				<span class="alert alert-danger">{{ resultTones }}</span>
-			</div>
-			<div>
-				<button class="btn btn-danger" content="Show Tones" @click="showTones = true">
-					Show Tones
-				</button>
-			</div>
-			<div>
-				<button class="btn btn-primary" @click="roll">Roll</button>
+<template>
+	<div class="main" @wheel.prevent @touchmove.prevent @scroll.prevent>
+		<div class="container d-flex">
+			<div class="col text-center">
+				<div id="resultChord" class="row">
+					<span>{{ resultChord }}</span>
+				</div>
+				<div id="resultTones" :style="{ visibility: showTones ? 'visible' : 'hidden' }">
+					<span class="alert alert-danger">{{ resultTones }}</span>
+				</div>
+				<div>
+					<button class="btn btn-danger" content="Show Tones" @click="showTones = true">
+						Show Tones
+					</button>
+				</div>
+				<div>
+					<button class="btn btn-primary" @click="roll">Roll</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -99,6 +101,10 @@
 
 <style scoped lang="sass">
 	.main
+		heigth: 100%
+		width: 100%
+
+	.container
 		transform: translate(0%,-10%)!important
 		margin-top: 15vh
 
