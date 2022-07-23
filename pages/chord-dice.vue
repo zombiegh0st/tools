@@ -1,14 +1,19 @@
 <template>
-	<div class="main container d-flex align-items-center min-vh-100">
-		<div class="col text-center align-middle">
-			<div class="row align-items-center">
-				<span class="resultChord">{{ resultChord }}</span>
+	<div class="main container d-flex min-vh-100">
+		<div class="col text-center">
+			<div id="resultChord" class="row">
+				<span>{{ resultChord }}</span>
 			</div>
-			<div class="row align-items-center">
-				<span class="resultTones">{{ resultTones }}</span>
+			<div id="resultTones" :style="{ visibility: showTones ? 'visible' : 'hidden' }">
+				<span class="alert alert-danger">{{ resultTones }}</span>
 			</div>
 			<div>
-				<Button class="roll-button" content="Roll" :onClick="roll" />
+				<button class="btn btn-danger" content="Show Tones" @click="showTones = true">
+					Show Tones
+				</button>
+			</div>
+			<div>
+				<button class="btn btn-primary" @click="roll">Roll</button>
 			</div>
 		</div>
 	</div>
@@ -19,10 +24,9 @@
 	export default {
 		data: function () {
 			return {
+				showTones: false,
 				resultChord: '',
 				resultTones: '',
-				//idxRoot: 0,
-				//idxMod: 0,
 				mods: ['', 'm'],
 				roots: [
 					'C',
@@ -75,30 +79,42 @@
 				const fifthIdx = (rootIdx + fifthInterval) % tones.length;
 				const third = tones[thirdIdx];
 				const fifth = tones[fifthIdx];
-				return `${root}, ${third}, ${fifth}`;
+				return `${root} - ${third} - ${fifth}`;
 			},
 
 			roll(e) {
 				var idxRoot = this.getRandomInt(this.roots.length);
 				var idxMod = this.getRandomInt(this.mods.length);
 				this.resultChord = this.roots[idxRoot] + this.mods[idxMod];
+
+				this.showTones = false;
 				this.resultTones = this.getChordTones(this.resultChord);
 			},
+		},
+		mounted() {
+			this.roll();
 		},
 	};
 </script>
 
 <style scoped lang="sass">
-	.roll-button
+	.main
+		transform: translate(0%,-10%)!important
+		margin-top: 15vh
+
+	#resultChord
+		color: #333
+		font-size: 20vh
+		margin: 0.2em 0em
+
+	#resultTones
+		width: 30hv
+		font-size: 4vh
+		margin: 1em
+
+	.btn
 		width: 30vh
 		height: 9vh
 		font-size: 4vh
-
-	.resultChord
-		color: #333
-		font-size: 6em
-		margin: 1em 0em
-
-	.main
-		transform: translate(0%,-10%)!important
+		margin: 0.2em 0em
 </style>
