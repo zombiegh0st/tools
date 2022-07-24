@@ -10,20 +10,19 @@
 						.bi.bi-search
 
 			.player
-				youtube(:video-id="videoId" ref="youtube" @playing="playing" width="" height="")
-			h1 {{isPlaying}}
+				youtube(:video-id="videoId" ref="youtube" width="" height="")
 			.controls
 				.contorls-create
 					h1 Start Loop
-					.btn.btn-primary(@click="setstartLoopPosition")
+					.btn.btn-primary(@click="setStartLoopPosition")
 						.bi.bi-align-start
-					.btn.btn-primary
-						.bi.bi-play-btn-fill
-					.btn.btn-primary(@click="pauseVideo")
+					.btn.btn-primary(@click="player.stopVideo()")
+						.bi.bi-stop-fill
+					.btn.btn-primary(@click="togglePlayVideo")
 						.bi(:class="[isPlaying ? 'bi-pause' : 'bi-play-btn-fill']")
-					.btn(:class="[isRepeating ? 'btn-primary' : 'btn-secondary']" v-on="isRepeating ? {click: stopLoop} : {click: startLoop}")
+					.btn(:class="[isRepeating ? 'btn-primary' : 'btn-secondary']" v-on="isRepeating ? {click: stopLoop} : {click: runLoop}")
 						.bi.bi-repeat
-					.btn.btn-primary(@click="setendLoopPosition")
+					.btn.btn-primary(@click="setEndLoopPosition")
 						.bi.bi-align-end
 
 				.controls-adjust-start
@@ -67,46 +66,67 @@
 				startLoopPosition: 0,
 				endLoopPosition: 0,
 				isRepeating: false,
+				timerId: 0,
+				isPlaying: false,
+				currPosition: 0,
 			};
 		},
 		methods: {
-			playVideo() {
-				this.player.playVideo();
-			},
-			pauseVideo() {
-				this.player.pauseVideo();
-			},
-			playing() {
-				if (this.isRepeating) {
-					this.runLoop();
+			async togglePlayVideo() {
+				const p = this.player;
+				if ((await p.getPlayerState()) === 1) {
+					p.pauseVideo();
+					this.isPlaying = false;
+				} else {
+					p.playVideo();
 				}
 			},
-			async setstartLoopPosition() {
+
+			async onStateChange(youtubeState) {
+				if (youtubeState.data === this.playerState.PLAYING) {
+					if (this.isRepeating) {
+						this.runLoop();
+					}
+				} else {
+					clearTimeout(this.timerId);
+				}
+				this.currPosition = await this.player.getCurrentTime();
+				this.isPlaying = this.isRepeating && youtubeState.data === this.playerState.PLAYING;
+			},
+
+			async setStartLoopPosition() {
 				this.startLoopPosition = await this.player.getCurrentTime();
 			},
-			async setendLoopPosition() {
+			async setEndLoopPosition() {
 				this.endLoopPosition = await this.player.getCurrentTime();
+			},
+
+			async runLoop() {
+				const that = this;
+				clearTimeout(this.timerId);
+				this.currPosition = await this.player.getCurrentTime();
+				this.timerId = setTimeout(async function () {
+					console.log('start');
+
+					if (that.loopIsValid()) {
+						that.isRepeating = true;
+						const p = that.player;
+						await p.seekTo(that.startLoopPosition);
+						that.runLoop();
+					}
+				}, this.timeLeft());
+			},
+			stopLoop() {
+				console.log('stop');
+				this.isRepeating = false;
+				clearTimeout(this.timerId);
+				return;
 			},
 			loopIsValid() {
 				return this.endLoopPosition > this.startLoopPosition;
 			},
-			runLoop() {
-				setTimeout(this.startLoop, (this.endLoopPosition - this.startLoopPosition) * 1000);
-			},
-			async startLoop() {
-				console.log('start');
-
-				if (this.loopIsValid()) {
-					this.isRepeating = true;
-					const p = this.player;
-					await p.seekTo(this.startLoopPosition);
-				}
-			},
-			stopLoop() {
-				console.log('stop');
-				this.player.stopVideo();
-				this.isRepeating = false;
-				return;
+			timeLeft() {
+				return (this.endLoopPosition - this.currPosition) * 1000;
 			},
 		},
 		computed: {
@@ -114,10 +134,18 @@
 				return this.$refs.youtube.player;
 			},
 		},
-		asyncComputed: {
-			async isPlaying() {
-				return (await this.player.getPlayerState()) === 1;
-			},
+		mounted() {
+			// Listen Youtube player state changes (buffering, user's play/pause clicks)
+			// https://stackoverflow.com/a/17087006/4992248
+			this.player.addEventListener('onStateChange', this.onStateChange);
+			this.playerState = {
+				UNSTARTED: -1,
+				ENDED: 0,
+				PLAYING: 1,
+				PAUSED: 2,
+				BUFFERING: 3,
+				VIDEO_CUED: 5,
+			};
 		},
 	};
 </script>

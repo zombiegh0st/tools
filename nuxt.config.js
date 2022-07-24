@@ -67,8 +67,7 @@ export default {
 	css: [],
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-	plugins: ['~/plugins/vue-youtube.js', '~/plugins/vue-async-computed.js'],
-
+	plugins: ['~/plugins/vue-youtube.js'],
 	// Auto import components: https://go.nuxtjs.dev/config-components
 	components: true,
 
@@ -80,6 +79,6 @@ export default {
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {
-		transpile: ['vue-youtube', 'vue-async-computed'],
+		transpile: ['vue-youtube'],
 	},
 };

@@ -16,7 +16,6 @@
 		"core-js": "^3.15.0",
 		"nuxt": "^2.15.7",
 		"sass": "^1.35.2",
-		"vue-async-computed": "^3.9.0",
 		"vue-youtube": "^1.4.0"
 	},
 	"devDependencies": {
