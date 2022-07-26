@@ -20,41 +20,43 @@
 						.bi.bi-stop-fill
 					.btn.btn-primary(@click="togglePlayVideo")
 						.bi(:class="[isPlaying ? 'bi-pause' : 'bi-play-btn-fill']")
-					.btn(:class="[isRepeating ? 'btn-primary' : 'btn-secondary']" v-on="isRepeating ? {click: stopLoop} : {click: runLoop}")
+					.btn(:class="[isRepeating ? 'btn-primary' : 'btn-secondary']" v-on="isRepeating ? {click: stopLoop} : {click: startLoop}")
 						.bi.bi-repeat
 					.btn.btn-primary(@click="setEndLoopPosition")
 						.bi.bi-align-end
 
 				.controls-adjust-start
-					h1 Adjust Loop Start {{startLoopPosition}}
-					.btn.btn-success
+					h1 Adjust Loop Start
+					p {{LoopTimeStart}}
+					.btn.btn-success(@click="adjustLoopStart(-1000)")
 						.bi.bi-chevron-double-left
-					.btn.btn-success
+					.btn.btn-success(@click="adjustLoopStart(-100)")
 						.bi.bi-chevron-left
-					.btn.btn-success
+					.btn.btn-success(@click="adjustLoopStart(-10)")
 						.bi.bi-chevron-compact-left
 
-					.btn.btn-success
+					.btn.btn-success(@click="adjustLoopStart(10)")
 						.bi.bi-chevron-compact-right
-					.btn.btn-success
+					.btn.btn-success(@click="adjustLoopStart(100)")
 						.bi.bi-chevron-right
-					.btn.btn-success
+					.btn.btn-success(@click="adjustLoopStart(1000)")
 						.bi.bi-chevron-double-right
 
 				.controls-adjust-start
-					h1 Adjust Loop End {{endLoopPosition}}
-					.btn.btn-danger
+					h1 Adjust Loop End
+					p {{LoopTimeEnd}}
+					.btn.btn-danger(@click="adjustLoopEnd(-1000)")
 						.bi.bi-chevron-double-left
-					.btn.btn-danger
+					.btn.btn-danger(@click="adjustLoopEnd(-100)")
 						.bi.bi-chevron-left
-					.btn.btn-danger
+					.btn.btn-danger(@click="adjustLoopEnd(-10)")
 						.bi.bi-chevron-compact-left
 
-					.btn.btn-danger
+					.btn.btn-danger(@click="adjustLoopEnd(10)")
 						.bi.bi-chevron-compact-right
-					.btn.btn-danger
+					.btn.btn-danger(@click="adjustLoopEnd(100)")
 						.bi.bi-chevron-right
-					.btn.btn-danger
+					.btn.btn-danger(@click="adjustLoopEnd(1000)")
 						.bi.bi-chevron-double-right
 </template>
 
@@ -85,13 +87,14 @@
 			async onStateChange(youtubeState) {
 				if (youtubeState.data === this.playerState.PLAYING) {
 					if (this.isRepeating) {
-						this.runLoop();
+						this.handleLoop();
 					}
 				} else {
 					clearTimeout(this.timerId);
 				}
 				this.currPosition = await this.player.getCurrentTime();
-				this.isPlaying = this.isRepeating && youtubeState.data === this.playerState.PLAYING;
+				this.isPlaying = youtubeState.data === this.playerState.PLAYING;
+				this.handleLoop();
 			},
 
 			async setStartLoopPosition() {
@@ -101,10 +104,28 @@
 				this.endLoopPosition = await this.player.getCurrentTime();
 			},
 
-			async runLoop() {
-				const that = this;
+			async adjustLoopStart(ms) {
+				this.startLoopPosition += ms / 1000;
+				await this.handleLoop();
+			},
+			async adjustLoopEnd(ms) {
+				this.endLoopPosition += ms / 1000;
+				await this.handleLoop();
+			},
+
+			async startLoop() {
+				console.log('start');
+				this.isRepeating = true;
+				await this.handleLoop();
+				return;
+			},
+			async handleLoop() {
+				if (!this.isRepeating && !this.isPlaying) return;
+
 				clearTimeout(this.timerId);
 				this.currPosition = await this.player.getCurrentTime();
+
+				const that = this;
 				this.timerId = setTimeout(async function () {
 					console.log('start');
 
@@ -112,7 +133,7 @@
 						that.isRepeating = true;
 						const p = that.player;
 						await p.seekTo(that.startLoopPosition);
-						that.runLoop();
+						that.handleLoop();
 					}
 				}, this.timeLeft());
 			},
@@ -132,6 +153,12 @@
 		computed: {
 			player() {
 				return this.$refs.youtube.player;
+			},
+			LoopTimeStart() {
+				return this.startLoopPosition.toFixed(2);
+			},
+			LoopTimeEnd() {
+				return this.endLoopPosition.toFixed(2);
 			},
 		},
 		mounted() {
