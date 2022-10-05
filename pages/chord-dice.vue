@@ -23,34 +23,14 @@
 
 <script>
 	import Button from '~/components/Button.vue';
+	import { Chord } from '~/types/music/chord';
+	import { CircleOfFifths } from '~/types/music/circle-of-fifths';
 	export default {
 		data: function () {
 			return {
 				showTones: false,
 				resultChord: '',
 				resultTones: '',
-				mods: ['', 'm'],
-				roots: [
-					'C',
-					'C#',
-					'Db',
-					'D',
-					'D#',
-					'Eb',
-					'E',
-					'F',
-					'F#',
-					'Gb',
-					'G',
-					'G#',
-					'A',
-					'Ab',
-					'A#',
-					'Bb',
-					'B',
-				],
-				tones_sharp: ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
-				tones_flat: ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'],
 			};
 		},
 
@@ -59,38 +39,11 @@
 		},
 
 		methods: {
-			getRandomInt(max) {
-				return Math.floor(Math.random() * max);
-			},
-
-			isFlat(chord) {
-				return chord.slice(-1) === 'b' || chord.slice(-2) === 'bm';
-			},
-
-			isMinor(chord) {
-				return chord.slice(-1) === 'm';
-			},
-
-			getChordTones(chord) {
-				const tones = this.isFlat(chord) ? this.tones_flat : this.tones_sharp;
-				const root = this.isMinor(chord) ? chord.slice(0, -1) : chord;
-				const rootIdx = tones.indexOf(root);
-				const thirdInterval = this.isMinor(chord) ? 3 : 4;
-				const thirdIdx = (rootIdx + thirdInterval) % tones.length;
-				const fifthInterval = 7;
-				const fifthIdx = (rootIdx + fifthInterval) % tones.length;
-				const third = tones[thirdIdx];
-				const fifth = tones[fifthIdx];
-				return `${root} - ${third} - ${fifth}`;
-			},
-
 			roll(e) {
-				var idxRoot = this.getRandomInt(this.roots.length);
-				var idxMod = this.getRandomInt(this.mods.length);
-				this.resultChord = this.roots[idxRoot] + this.mods[idxMod];
-
 				this.showTones = false;
-				this.resultTones = this.getChordTones(this.resultChord);
+				const chord = CircleOfFifths.getRandomChord();
+				this.resultChord = chord.toString();
+				this.resultTones = chord.getTones().join(', ');
 			},
 		},
 		mounted() {
