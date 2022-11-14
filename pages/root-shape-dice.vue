@@ -14,11 +14,11 @@
 <script>
 	import Button from '~/components/Button.vue';
 	export default {
-		data: function() {
+		data: function () {
 			return {
 				idxRoot: 0,
 				idxShape: 0,
-				shapes: ['E4', 'E1', 'D1', 'A4', 'A1'],
+				shapes: ['E4', 'E1', 'A4', 'A1', 'D4', 'D1', 'G4', 'G1', 'B4', 'B1', 'e4', 'e1'],
 				roots: [
 					'C',
 					'C#',
@@ -46,10 +46,10 @@
 		},
 
 		methods: {
-			getRandomInt: function(max) {
+			getRandomInt: function (max) {
 				return Math.floor(Math.random() * max);
 			},
-			roll: function(e) {
+			roll: function (e) {
 				var newRoot = this.getRandomInt(this.roots.length);
 				this.idxRoot = newRoot;
 
