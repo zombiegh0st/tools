@@ -1,6 +1,7 @@
 # URLS deployed app
-- [Chord-Dice](https://tools-zombiegh0st.vercel.app/chord-dice)
-- [Root-Shape-Dice](https://tools-zombiegh0st.vercel.app/root-shape-dice)
+
+-   [Chord-Dice](https://tools-zombiegh0st.vercel.app/chord-dice)
+-   [Root-Shape-Dice](https://tools-zombiegh0st.vercel.app/root-shape-dice)
 
 # Nuxt.js Example
 
@@ -8,7 +9,7 @@ This directory is a brief example of a [Nuxt.js](https://nuxtjs.org) app that ca
 
 ## Deploy Your Own
 
-Deploy your own Nuxt.js project with Vercel.
+Deploy your own Nuxt.js project with [Vercel](https://vercel.com).
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/vercel/tree/main/examples/nuxtjs)
 
