@@ -12,6 +12,11 @@
 				</button>
 			</div>
 			<div>
+				<button class="btn btn-primary row button" @click="goto('/bennys-cards')">
+					Bennys Cards
+				</button>
+			</div>
+			<div>
 				<button class="btn btn-primary row button" @click="goto('/youtube-looper')">
 					Looper
 				</button>
