@@ -2,6 +2,7 @@
 
 -   [Chord-Dice](https://tools-zombiegh0st.vercel.app/chord-dice)
 -   [Root-Shape-Dice](https://tools-zombiegh0st.vercel.app/root-shape-dice)
+-   [Bennys Cards](https://tools-zombiegh0st.vercel.app/bennys-cards)
 
 # Nuxt.js Example
 
