@@ -12,11 +12,8 @@
 				</button>
 			</div>
 			<div>
-				<button
-					class="btn btn-primary row button"
-					@click="goto('/key-chord-interval-dice')"
-				>
-					Key-Chord-Interval-Dice
+				<button class="btn btn-primary row button" @click="goto('/bennys-cards')">
+					Bennys Cards
 				</button>
 			</div>
 			<div>

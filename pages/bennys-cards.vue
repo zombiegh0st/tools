@@ -2,7 +2,7 @@
 	<div class="main container d-flex align-items-center min-vh-100">
 		<div class="col text-center align-middle">
 			<div class="row align-items-center">
-				<span class="result">{{ shapes[idxShape] }} - {{ roots[idxRoot] }}</span>
+				<span class="result">{{ roots[idxRoot] }} • {{ intervals[idxShape] }}</span>
 			</div>
 			<div>
 				<Button class="roll-button" content="Roll" :onClick="roll" />
@@ -18,7 +18,7 @@
 			return {
 				idxRoot: 0,
 				idxShape: 0,
-				shapes: ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'],
+				intervals: ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'],
 				roots: [
 					'C',
 					'C#',
@@ -53,7 +53,7 @@
 				var newRoot = this.getRandomInt(this.roots.length);
 				this.idxRoot = newRoot;
 
-				var newShape = this.getRandomInt(this.shapes.length);
+				var newShape = this.getRandomInt(this.intervals.length);
 				this.idxShape = newShape;
 			},
 		},
