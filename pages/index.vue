@@ -12,6 +12,14 @@
 				</button>
 			</div>
 			<div>
+				<button
+					class="btn btn-primary row button"
+					@click="goto('/key-chord-interval-dice')"
+				>
+					Key-Chord-Interval-Dice
+				</button>
+			</div>
+			<div>
 				<button class="btn btn-primary row button" @click="goto('/youtube-looper')">
 					Looper
 				</button>
