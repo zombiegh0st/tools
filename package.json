@@ -5,12 +5,9 @@
 	"author": "msweeneydev",
 	"private": true,
 	"scripts": {
-		"dev": "nuxt",
-		"build": "nuxt generate",
-		"start": "nuxt start",
-		"dev-legacy": "SET NODE_OPTIONS=--openssl-legacy-provider && nuxt",
-		"build-legacy": "SET NODE_OPTIONS=--openssl-legacy-provider && nuxt generate",
-		"start-legacy": "SET NODE_OPTIONS=--openssl-legacy-provider && nuxt start"
+		"dev": "SET NODE_OPTIONS=--openssl-legacy-provider && nuxt",
+		"build": "SET NODE_OPTIONS=--openssl-legacy-provider && nuxt generate",
+		"start": "SET NODE_OPTIONS=--openssl-legacy-provider && nuxt start"
 	},
 	"dependencies": {
 		"core-js": "^3.15.0",
