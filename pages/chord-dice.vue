@@ -14,7 +14,7 @@
 					</button>
 				</div>
 				<div>
-					<button class="btn btn-primary" @click="mix">Roll</button>
+					<button class="btn btn-primary" @click="roll">mix</button>
 				</div>
 			</div>
 		</div>
