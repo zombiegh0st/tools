@@ -16,11 +16,11 @@
 					Bennys Cards
 				</button>
 			</div>
-			<div>
+			<!-- <div>
 				<button class="btn btn-primary row button" @click="goto('/youtube-looper')">
 					Looper
 				</button>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>

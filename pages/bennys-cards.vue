@@ -5,7 +5,7 @@
 				<span class="result">{{ roots[idxRoot] }} • {{ intervals[idxShape] }}</span>
 			</div>
 			<div>
-				<Button class="roll-button" content="Roll" :onClick="roll" />
+				<Button class="roll-button" content="mix" :onClick="roll" />
 			</div>
 		</div>
 	</div>
