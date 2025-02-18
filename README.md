@@ -1,8 +1,8 @@
 # URLS deployed app
 
--   [Chord-Dice](https://tools-zombiegh0st.vercel.app/chord-dice)
--   [Root-Shape-Dice](https://tools-zombiegh0st.vercel.app/root-shape-dice)
--   [Bennys Cards](https://tools-zombiegh0st.vercel.app/bennys-cards)
+-   [Chord-Dice](https://tools-kappa.vercel.app/chord-dice)
+-   [Root-Shape-Dice](https://tools-kappa.vercel.app/root-shape-dice)
+-   [Bennys Cards](https://tools-kappa.vercel.app/bennys-cards)
 
 # Nuxt.js Example
 
